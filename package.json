@@ -75,6 +75,7 @@
     "react-native-video": "5.0.2",
     "react-native-webview": "github:mattermost/react-native-webview#b5e22940a613869d3999feac9451ee65352f4fbe",
     "react-native-youtube": "2.0.1",
+    "react-native-ziti": "github:netfoundry/react-native-ziti#master",
     "react-redux": "7.2.0",
     "redux": "4.0.5",
     "redux-action-buffer": "1.2.0",
