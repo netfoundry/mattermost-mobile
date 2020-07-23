@@ -295,6 +295,8 @@ PODS:
     - React
   - RNVectorIcons (6.6.0):
     - React
+  - RNZiti (1.0.0):
+    - React
   - SDWebImage (5.4.2):
     - SDWebImage/Core (= 5.4.2)
   - SDWebImage/Core (5.4.2)
@@ -368,12 +370,13 @@ DEPENDENCIES:
   - "RNSentry (from `../node_modules/@sentry/react-native`)"
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
+  - RNZiti (from `../node_modules/react-native-ziti/ios`)
   - Swime (= 3.0.6)
   - XCDYouTubeKit (= 2.8.2)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - boost-for-react-native
     - libwebp
     - SDWebImage
@@ -494,6 +497,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-svg"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
+  RNZiti:
+    :path: "../node_modules/react-native-ziti/ios"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -555,6 +560,7 @@ SPEC CHECKSUMS:
   RNSentry: 9b1d983b2d5d1c215ba6490348fd2a4cc23a8a9d
   RNSVG: 069864be08c9fe065a2cf7e63656a34c78653c99
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
+  RNZiti: 822c76e22772275f3964b7159fe7515a949c7b43
   SDWebImage: 4ca2dc4eefae4224bea8f504251cda485a363745
   SDWebImageWebPCoder: 947093edd1349d820c40afbd9f42acb6cdecd987
   Sentry: 14bdd673870e8cf64932b149fad5bbbf39a9b390
@@ -565,4 +571,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 8199a7b8e5d4cc8c741ea6292c067c33ad835da9
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.9.3

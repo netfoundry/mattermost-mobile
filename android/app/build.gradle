@@ -255,6 +255,7 @@ dependencies {
     implementation project(':react-native-local-auth')
     implementation project(':jail-monkey')
     implementation project(':react-native-youtube')
+    implementation project(':react-native-ziti')
     implementation project(':react-native-exception-handler')
     implementation project(':rn-fetch-blob')
     implementation project(':react-native-webview')
