@@ -14,9 +14,18 @@ index ffef75f..feabe20 100644
  
  </manifest>
 diff --git a/node_modules/react-native-notifications/android/app/src/main/java/com/wix/reactnativenotifications/RNNotificationsModule.java b/node_modules/react-native-notifications/android/app/src/main/java/com/wix/reactnativenotifications/RNNotificationsModule.java
-index 8fb5f01..d3a1e7a 100644
+index 8fb5f01..08ca61f 100644
 --- a/node_modules/react-native-notifications/android/app/src/main/java/com/wix/reactnativenotifications/RNNotificationsModule.java
 +++ b/node_modules/react-native-notifications/android/app/src/main/java/com/wix/reactnativenotifications/RNNotificationsModule.java
+@@ -5,7 +5,7 @@ import android.app.Application;
+ import android.content.Context;
+ import android.content.Intent;
+ import android.os.Bundle;
+-import android.support.v4.app.NotificationManagerCompat;
++import androidx.core.app.NotificationManagerCompat;
+ import android.util.Log;
+ 
+ import com.facebook.react.bridge.ActivityEventListener;
 @@ -103,12 +103,26 @@ public class RNNotificationsModule extends ReactContextBaseJavaModule implements
          pushNotification.onPostRequest(notificationId);
      }
@@ -52,6 +61,18 @@ index 8fb5f01..d3a1e7a 100644
 +        FcmInstanceIdRefreshHandlerService.enqueueWork(appContext, tokenFetchIntent);
      }
  }
+diff --git a/node_modules/react-native-notifications/android/app/src/main/java/com/wix/reactnativenotifications/core/InitialNotificationHolder.java b/node_modules/react-native-notifications/android/app/src/main/java/com/wix/reactnativenotifications/core/InitialNotificationHolder.java
+index 3636f41..ae9ffc4 100644
+--- a/node_modules/react-native-notifications/android/app/src/main/java/com/wix/reactnativenotifications/core/InitialNotificationHolder.java
++++ b/node_modules/react-native-notifications/android/app/src/main/java/com/wix/reactnativenotifications/core/InitialNotificationHolder.java
+@@ -1,6 +1,6 @@
+ package com.wix.reactnativenotifications.core;
+ 
+-import android.support.annotation.Nullable;
++import androidx.annotation.Nullable;
+ 
+ import com.wix.reactnativenotifications.core.notification.PushNotificationProps;
+ 
 diff --git a/node_modules/react-native-notifications/android/app/src/main/java/com/wix/reactnativenotifications/core/helpers/ScheduleNotificationHelper.java b/node_modules/react-native-notifications/android/app/src/main/java/com/wix/reactnativenotifications/core/helpers/ScheduleNotificationHelper.java
 new file mode 100644
 index 0000000..c35076d
@@ -372,15 +393,15 @@ index 7b320e1..d95535b 100644
 +    }
  }
 diff --git a/node_modules/react-native-notifications/android/app/src/main/java/com/wix/reactnativenotifications/gcm/FcmInstanceIdRefreshHandlerService.java b/node_modules/react-native-notifications/android/app/src/main/java/com/wix/reactnativenotifications/gcm/FcmInstanceIdRefreshHandlerService.java
-index 8270ad6..3674814 100644
+index 8270ad6..903f056 100644
 --- a/node_modules/react-native-notifications/android/app/src/main/java/com/wix/reactnativenotifications/gcm/FcmInstanceIdRefreshHandlerService.java
 +++ b/node_modules/react-native-notifications/android/app/src/main/java/com/wix/reactnativenotifications/gcm/FcmInstanceIdRefreshHandlerService.java
 @@ -1,19 +1,23 @@
  package com.wix.reactnativenotifications.gcm;
  
 -import android.app.IntentService;
-+import android.support.annotation.NonNull;
-+import android.support.v4.app.JobIntentService;
++import androidx.annotation.NonNull;
++import androidx.core.app.JobIntentService;
 +import android.content.Context;
  import android.content.Intent;
  
@@ -404,6 +425,43 @@ index 8270ad6..3674814 100644
          IFcmToken gcmToken = FcmToken.get(this);
          if (gcmToken == null) {
              return;
+diff --git a/node_modules/react-native-notifications/android/prepare-robolectric.gradle b/node_modules/react-native-notifications/android/prepare-robolectric.gradle
+index 7570b17..3ccd8dc 100644
+--- a/node_modules/react-native-notifications/android/prepare-robolectric.gradle
++++ b/node_modules/react-native-notifications/android/prepare-robolectric.gradle
+@@ -15,19 +15,19 @@ dependencies {
+     robolectricRuntime "org.robolectric:shadows-framework:3.5.1"
+ }
+ 
+-rootProject.task(type: Copy, overwrite: true, "downloadRobolectricDependencies") {
+-    println "downloadRobolectricDependencies into " + robolectricDependenciesFolder
+-    from configurations.robolectricRuntime
+-    into robolectricDependenciesFolder
+-}
+-
+-project.afterEvaluate {
+-    tasks.all {
+-        if (it.name.startsWith("test")) {
+-            it.dependsOn(rootProject.tasks.findByName("downloadRobolectricDependencies"))
+-        }
+-    }
+-}
++// rootProject.task(type: Copy, overwrite: true, "downloadRobolectricDependencies") {
++//     println "downloadRobolectricDependencies into " + robolectricDependenciesFolder
++//     from configurations.robolectricRuntime
++//     into robolectricDependenciesFolder
++// }
++
++// project.afterEvaluate {
++//     tasks.all {
++//         if (it.name.startsWith("test")) {
++//             it.dependsOn(rootProject.tasks.findByName("downloadRobolectricDependencies"))
++//         }
++//     }
++// }
+ 
+ android {
+     testOptions {
 diff --git a/node_modules/react-native-notifications/lib/src/index.android.js b/node_modules/react-native-notifications/lib/src/index.android.js
 index 51376bf..a5d9540 100644
 --- a/node_modules/react-native-notifications/lib/src/index.android.js
